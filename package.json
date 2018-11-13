@@ -4,7 +4,10 @@
   "description": "api support",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon index.js --exec babel-node"
+    "dev": "cross-env NODE_ENV=development nodemon ./src/index.js --exec babel-node",
+    "upload:prodconf": "scp -P ./src/config/prod.config.js root101.132.235.220:/xbblog-api/src/config/",
+    "compile": "npx babel src --out-dir dist",
+    "prod": "pm2 start ./dist/index.js --name='blog-api'"
   },
   "author": "",
   "license": "ISC",
