@@ -1,8 +1,8 @@
 import Koa from 'koa'
-import conf from '../config'
+import conf from './config'
 import { handleError, handleSuccess } from './util/handle'
-import HttpError from '../middleware/httperror'
-import router from '../route'
+import HttpError from './middleware/httperror'
+import router from './route'
 import bodyParser from 'koa-bodyparser'
 import { connect } from './util/connect-mongodb'
 
