@@ -75,7 +75,9 @@ export default class {
         thumb,
         state,
         tag,
-        category
+        category,
+        style,
+        script
       } = ctx.request.body
 
       if (!title) {
@@ -98,7 +100,9 @@ export default class {
         thumb,
         state,
         tag,
-        category
+        category,
+        style,
+        script
       }, { new: true })
 
       handleSuccess({ ctx, result: article })
@@ -116,7 +120,9 @@ export default class {
         thumb,
         state,
         tag,
-        category
+        category,
+        style,
+        script
       } = ctx.request.body
 
       if (!title) {
@@ -139,7 +145,9 @@ export default class {
         thumb,
         state,
         tag,
-        category
+        category,
+        style,
+        script
       })
 
       handleSuccess({ ctx, result: article })

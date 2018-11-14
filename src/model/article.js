@@ -25,6 +25,11 @@ const schema = new mongoose.Schema({
   // view
   view: { type: Number, default: 0 },
 
+  style: { type: String },
+
+  // script 可以执行的脚本
+  script: { type: String },
+
 	// 发布日期
 	create_at: { type: Date, default: Date.now },
 
