@@ -11,7 +11,7 @@ const postRequest = ({ urlKey, urls, msg }) => {
 		headers: { 'Content-Type': 'text/plain' },
 		url: `http://data.zz.baidu.com/${urlKey}?site=${conf.BAIDUSEO.site}&token=${conf.BAIDUSEO.token}`
 	}, (error, response, body) => {
-    consola.log('body:', body)
+    consola.log(msg, body)
 	})
 }
 

@@ -61,7 +61,7 @@ export default class {
 
       const article = await Article.findByIdAndRemove(_id)
 
-      baiduSeoDelete([`${conf.BAIDUSEO.site}/article/detail/${_id}`])
+      baiduSeoDelete(`${conf.BAIDUSEO.site}/article/detail/${_id}`)
       handleSuccess({ ctx, result: article })
     } catch(err) {
       throw err
