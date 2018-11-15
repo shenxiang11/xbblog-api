@@ -13,5 +13,9 @@ export default {
   ADMIN: {
     username: '13800000000',
     password: 'dwyane3wade'
+  },
+  BAIDUSEO: {
+    site: 'https://www.sweetsmartstrongshen.cc',
+    token: 'keGmkiSRWlUyQvo1'
   }
 }

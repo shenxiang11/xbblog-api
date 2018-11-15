@@ -1,5 +1,7 @@
 import { handleSuccess } from '../util/handle'
 import Article from '../model/article'
+import { baiduSeoPush, baiduSeoUpdate, baiduSeoDelete } from '../util/baidu-seo'
+import conf from '../config'
 
 const categories = ['code', 'think', 'fitness']
 const states = ['draft', 'published']
@@ -59,6 +61,7 @@ export default class {
 
       const article = await Article.findByIdAndRemove(_id)
 
+      baiduSeoDelete([`${conf.BAIDUSEO.site}/article/detail/${_id}`])
       handleSuccess({ ctx, result: article })
     } catch(err) {
       throw err
@@ -105,6 +108,7 @@ export default class {
         script
       }, { new: true })
 
+      baiduSeoUpdate(`${conf.BAIDUSEO.site}/article/detail/${article._id}`)
       handleSuccess({ ctx, result: article })
     } catch(err) {
       throw err
@@ -150,8 +154,8 @@ export default class {
         script
       })
 
+      baiduSeoPush(`${conf.BAIDUSEO.site}/article/detail/${article._id}`)
       handleSuccess({ ctx, result: article })
-
     } catch(err) {
       throw err
     }
