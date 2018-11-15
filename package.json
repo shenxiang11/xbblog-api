@@ -19,7 +19,8 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mongoose": "^5.3.9",
-    "qiniu": "^7.2.1"
+    "qiniu": "^7.2.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
