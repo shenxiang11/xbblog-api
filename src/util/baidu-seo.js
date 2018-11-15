@@ -1,4 +1,4 @@
-import config from '../config'
+import conf from '../config'
 import consola from 'consola'
 import request from 'request'
 
@@ -9,7 +9,7 @@ const postRequest = ({ urlKey, urls, msg }) => {
 	request.post({
 		body: urls,
 		headers: { 'Content-Type': 'text/plain' },
-		url: `http://data.zz.baidu.com/${urlKey}?site=${config.BAIDU.site}&token=${config.BAIDU.token}`
+		url: `http://data.zz.baidu.com/${urlKey}?site=${conf.BAIDUSEO.site}&token=${conf.BAIDUSEO.token}`
 	}, (error, response, body) => {
 		consola.info(urls, msg, error, body)
 	})
