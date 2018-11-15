@@ -1,5 +1,6 @@
 import config from '../config'
 import consola from 'consola'
+import request from 'request'
 
 const postRequest = ({ urlKey, urls, msg }) => {
   if (process.env.NODE_ENV === 'development') {
