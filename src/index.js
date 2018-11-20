@@ -16,3 +16,5 @@ app.use(HttpError())
   .use(router.allowedMethods())
 
 app.listen(conf.SERVER.port)
+
+console.log('test')
