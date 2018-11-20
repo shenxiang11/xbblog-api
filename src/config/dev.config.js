@@ -17,5 +17,9 @@ export default {
   BAIDUSEO: {
     site: 'https://www.sweetsmartstrongshen.cc',
     token: 'keGmkiSRWlUyQvo1'
+  },
+  SMTP: {
+    user: '863461783@qq.com',
+    pass: 'idmfjlnbnvkqbbhg'
   }
 }

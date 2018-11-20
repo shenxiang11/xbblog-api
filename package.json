@@ -19,7 +19,9 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mongoose": "^5.3.9",
+    "nodemailer": "^4.7.0",
     "qiniu": "^7.2.1",
+    "redis": "^2.8.0",
     "request": "^2.88.0"
   },
   "devDependencies": {
