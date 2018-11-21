@@ -6,6 +6,20 @@ import { sendMail } from '../util/transporter'
 import User from '../model/user'
 
 export default class {
+  static async info(ctx) {
+    try {
+      const auth = ctx.decodedToken
+      
+      let user = await User.findOne({ _id: auth._id })
+      user = JSON.parse(JSON.stringify(user))
+      delete user['password']
+
+      handleSuccess({ ctx, result: user })
+    } catch(err) {
+      throw err
+    }
+  }
+
   static async login(ctx) {
     try {
       const { mail, password } = ctx.request.body
@@ -31,11 +45,11 @@ export default class {
       delete res['password']
 
       const token = jwt.sign({ 
-        mail,
+        ...res,
         iat: Date.now()
       }, conf.JWT.secret, { expiresIn: conf.JWT.expiresIn })
 
-      handleSuccess({ ctx, message: '登录成功', result: { token, mail } })
+      handleSuccess({ ctx, message: '登录成功', result: { token, user: res } })
     } catch(err) {
       throw err
     }

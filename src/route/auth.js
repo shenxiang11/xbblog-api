@@ -5,6 +5,7 @@ import AuthController from '../controller/auth'
 const router = new Router()
 
 router
+  .get('/info', checkLogin, AuthController.info)
   .post('/login', AuthController.login)
   .get('/captcha', AuthController.captcha)
   .post('/register', AuthController.register)

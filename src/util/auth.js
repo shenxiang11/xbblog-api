@@ -47,7 +47,8 @@ export const authIsVerified = (authorization, ctx) => {
         return true
 			}
 		} catch (err) {
-      throw err
+      // token 畸形等一切错误视为token失效
+      return false
     }
 	}
 	return false
