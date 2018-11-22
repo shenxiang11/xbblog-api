@@ -9,8 +9,7 @@ router
   .post('/login', AuthController.login)
   .get('/captcha', AuthController.captcha)
   .post('/register', AuthController.register)
+  .patch('/update-info/:_id', checkLogin, AuthController.updateInfo)
   .post('/admin-login', AuthController.adminLogin)
-  // .get('/test', checkLogin, AuthController.test)
-  // .get('/info', checkLogin, AuthController.getAuthInfo)
 
 export default router

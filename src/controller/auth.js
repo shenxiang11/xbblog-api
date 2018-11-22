@@ -4,8 +4,53 @@ import conf from '../config'
 import redisClient, { redisGet } from '../util/connect-redis'
 import { sendMail } from '../util/transporter'
 import User from '../model/user'
+import fs from 'fs'
+import path from 'path'
 
 export default class {
+
+  static async updateInfo(ctx) {
+    try {
+      const auth = ctx.decodedToken
+      const { _id } = ctx.params
+      const portrait = ctx.request.files ? ctx.request.files.portrait : null
+
+      const {
+        website,
+        nickname
+      } = ctx.request.body
+
+      if (auth._id !== _id) {
+        throw new Error('只能修改自己的信息')
+      }
+
+      // 图片上传
+      let filePath = ''
+      if (portrait) {
+        const reader = fs.createReadStream(portrait.path);
+        filePath = path.join(__dirname, '../../public/portraits') + `/${Date.now()}${path.extname(portrait.name)}`
+        const upStream = fs.createWriteStream(filePath)
+        reader.pipe(upStream)
+      }
+      filePath = filePath.split('/public')[1]
+
+      const options = {}
+      if (portrait) {
+        options.portrait = filePath
+      }
+
+      const info = await User.findByIdAndUpdate(_id, { 
+        website,
+        nickname,
+        ...options
+      }, { new: true })
+
+      handleSuccess({ ctx, result: info })
+    } catch(err) {
+      throw err
+    }
+  }
+
   static async info(ctx) {
     try {
       const auth = ctx.decodedToken
@@ -99,6 +144,7 @@ export default class {
       }
 
       const code = Math.random().toString().substr(2,6)
+      console.log('code', code)
 
       await sendMail({
         from: conf.SMTP.user,
@@ -140,47 +186,4 @@ export default class {
       throw err
     }
   }
-
-  static async test(ctx) {
-    handleSuccess({ ctx, message: 'Oh!!!', result: ctx.decodedToken })
-  }
-
-  // // 后台用户登录
-  // static async adminLogin(ctx) {
-  //   try {
-  //     const { username, password } = ctx.request.body
-
-  //     const user = await User.findOne({ username })
-
-  //     if (!user || user.password !== password) {
-  //       throw new Error('用户名密码错误')
-  //     }
-
-  //     if (user.role !== 99) {
-  //       throw new Error('权限不足')
-  //     }
-
-  //     user.password = null
-
-  //     const token = jwt.sign({ user_id: user._id, role: user.role }, 'xxxxxxx', { expiresIn: '1h' })
-
-  //     handleSuccess({ ctx, message: '登陆成功', result: { user, token } })
-  //   } catch(err) {
-  //     throw err
-  //   }
-  // }
-
-  // // 按token获取用户信息
-  // static async getAuthInfo(ctx) {
-  //   try {
-  //     const { user_id } = ctx.state
-
-  //     const user = await User.findById(user_id)
-  //     user.password = null
-
-  //     handleSuccess({ ctx, message: '获取用户信息成功', result: user })
-  //   } catch(err) {
-  //     throw err
-  //   }
-  // }
 }

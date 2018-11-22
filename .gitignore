@@ -1,3 +1,4 @@
 node_modules
 src/config/prod.config.js
 dist
+public/portraits
