@@ -7,10 +7,17 @@ export default class {
       const { message } = ctx.request.body
       const auth = ctx.decodedToken
 
-      const res = await Guestbook.create({
+      let res = await Guestbook.create({
         message,
         user: auth._id
       })
+
+      res = await Guestbook
+        .findOne({ _id: res._id })
+        .populate({
+          path: 'user',
+          select: '-password'
+        })
 
       handleSuccess({ ctx, result: res })
     } catch(err) {
