@@ -15,8 +15,6 @@ const schema = new mongoose.Schema({
   
   portrait: { type: String },
 
-  portraitUploadGithub: { type: Boolean, default: false },
-
   nickname: { type: String, unique: true, sparse: true }
 })
 
