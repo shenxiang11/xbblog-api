@@ -172,16 +172,26 @@ export default class {
       if (!password) {
         throw new Error('密码不能为空')
       }
-      if (username !== conf.ADMIN.username || password !== conf.ADMIN.password) {
+
+      let admin = await User.findOne({ identity: 'admin' })
+
+      if (!admin) {
         throw new Error('用户名或密码错误')
+      } else if (admin.mail !== username && admin.phone !== username) {
+        throw new Error('用户名或密码错误') 
+      } else if (admin.password !== password) {
+        throw new Error('用户名或密码错误') 
       }
 
+      admin = JSON.parse(JSON.stringify(admin))
+      delete admin['password']
+
       const token = jwt.sign({ 
-        username,
+        admin,
         iat: Date.now()
       }, conf.JWT.secret, { expiresIn: conf.JWT.expiresIn })
 
-      handleSuccess({ ctx, message: '登录成功', result: { token, username } })
+      handleSuccess({ ctx, message: '登录成功', result: { token, user: admin } })
     } catch(err) {
       throw err
     }

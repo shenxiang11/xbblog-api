@@ -10,10 +10,6 @@ export default {
     expiresIn: 1000 * 60 * 60 * 24,
     clientPrefix: 'Bearer'
   },
-  ADMIN: {
-    username: '13800000000',
-    password: 'dwyane3wade'
-  },
   BAIDUSEO: {
     site: 'https://www.sweetsmartstrongshen.cc',
     token: 'keGmkiSRWlUyQvo1'
