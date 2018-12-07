@@ -151,10 +151,10 @@ export default class {
         to: mail,
         subject: '香饽饽博客注册码',
         text: 'text',
-        html: `您的邀请码是:<b>${code}</b>,有效期1分钟,再次获取后失效`
+        html: `您的邀请码是:<b>${code}</b>,有效期10分钟,再次获取后失效`
       })
 
-      redisClient.setex([`captcha:${mail}`, '60' , code])
+      redisClient.setex([`captcha:${mail}`, '600' , code])
 
       handleSuccess({ ctx, message: '邮件发送成功' })
     } catch(err) {
