@@ -11,5 +11,6 @@ router
   .post('/register', AuthController.register)
   .patch('/update-info/:_id', checkLogin, AuthController.updateInfo)
   .post('/admin-login', AuthController.adminLogin)
+  .get('/test', checkAdmin, AuthController.info)
 
 export default router

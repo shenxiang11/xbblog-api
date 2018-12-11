@@ -2,16 +2,24 @@ import jwt from 'jsonwebtoken'
 import conf from '../config'
 
 export const checkAdmin = (ctx, next) => {
-  const authorization = ctx.header.authorization
-  const token = authToken(authorization)
+  try {
+    const authorization = ctx.header.authorization
+    const token = authToken(authorization)
 
-  if (!token || !authIsVerified(authorization, ctx)) {
-    ctx.throw(401, '未登录或Token失效')
+    if (!token || !authIsVerified(authorization, ctx)) {
+      ctx.throw(401, '未登录或Token失效')
+    }
+
+    const user = jwt.verify(token, conf.JWT.secret)
+    
+    if (user.identity !== 'admin') {
+      ctx.throw(400, '非admin用户')
+    }
+
+    return next()
+  } catch (err) {
+    ctx.throw(400, err.message)
   }
-
-  // 现在只有一个admin用户,checkAdmin和checkLogin意义暂时相同
-
-  return next()
 }
 
 export const checkLogin = (ctx, next) => {
