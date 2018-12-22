@@ -11,7 +11,7 @@ export const checkAdmin = (ctx, next) => {
     }
 
     const user = jwt.verify(token, conf.JWT.secret)
-    
+    console.log(user)
     if (user.identity !== 'admin') {
       ctx.throw(400, '非admin用户')
     }
