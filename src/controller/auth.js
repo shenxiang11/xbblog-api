@@ -187,7 +187,7 @@ export default class {
       delete admin['password']
 
       const token = jwt.sign({ 
-        admin,
+        ...admin,
         iat: Date.now()
       }, conf.JWT.secret, { expiresIn: conf.JWT.expiresIn })
 
