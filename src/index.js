@@ -8,6 +8,7 @@ import koaBody from 'koa-body'
 import { connect } from './util/connect-mongodb'
 import serve from 'koa-static'
 import path from 'path'
+import Wechat from './util/wechat-lib'
 
 const app = new Koa()
 

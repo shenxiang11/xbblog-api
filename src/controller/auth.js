@@ -144,7 +144,6 @@ export default class {
       }
 
       const code = Math.random().toString().substr(2,6)
-      console.log('code', code)
 
       await sendMail({
         from: conf.SMTP.user,

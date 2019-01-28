@@ -4,6 +4,7 @@
   "description": "api support",
   "main": "index.js",
   "scripts": {
+    "start:redis": "redis-server --daemonize yes",
     "dev": "cross-env NODE_ENV=development nodemon ./src/index.js --exec babel-node",
     "upload:prodconf": "scp ./src/config/prod.config.js root@101.132.235.220:/root/xbblog-api/src/config/",
     "compile": "npx babel src --out-dir dist",
@@ -13,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "axios": "^0.18.0",
     "consola": "^2.0.7",
     "jsonwebtoken": "^8.3.0",
     "koa": "^2.6.1",
@@ -24,7 +26,8 @@
     "nodemailer": "^4.7.0",
     "qiniu": "^7.2.1",
     "redis": "^2.8.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sha1": "^1.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

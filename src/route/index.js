@@ -4,6 +4,7 @@ import tag from './tag'
 import category from './category'
 import article from './article'
 import guestbook from './guestbook'
+import wechat from './wechat'
 
 const router = new Router({
   prefix: '/api'
@@ -15,5 +16,6 @@ router
   .use('/category', category.routes())
   .use('/article', article.routes())
   .use('/guestbook', guestbook.routes())
+  .use('/wechat', wechat.routes())
 
 export default router
