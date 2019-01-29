@@ -54,7 +54,9 @@ function sign(ticket, url) {
     appId: conf.WECHAT.appID,
     noncestr: nonce,
     timestamp,
-    signature
+    signature,
+    ticket,
+    url
   }
 }
 
