@@ -8,13 +8,16 @@ import koaBody from 'koa-body'
 import { connect } from './util/connect-mongodb'
 import serve from 'koa-static'
 import path from 'path'
+import helmet from "koa-helmet";
 import Wechat from './util/wechat-lib'
 
 const app = new Koa()
 
 connect()
 
-app.use(HttpError())
+app
+  .use(helmet())
+  .use(HttpError())
   // .use(bodyParser())
   .use(serve(path.join(__dirname, '../public')))
   .use(koaBody({
