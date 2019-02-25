@@ -6,7 +6,7 @@
   "scripts": {
     "start:redis": "redis-server --daemonize yes",
     "dev": "cross-env NODE_ENV=development nodemon ./src/index.js --exec babel-node",
-    "upload:prodconf": "scp ./src/config/prod.config.js root@101.132.235.220:/root/xbblog-api/src/config/",
+    "upload:prodconf": "scp ./src/config/prod.config.js sx@101.132.235.220:/home/sx/xbblog-api/src/config/",
     "compile": "npx babel src --out-dir dist",
     "prod": "pm2 start ./dist/index.js --name='blog-api'"
   },
@@ -28,7 +28,8 @@
     "qiniu": "^7.2.1",
     "redis": "^2.8.0",
     "request": "^2.88.0",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "xss-filters": "^1.2.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

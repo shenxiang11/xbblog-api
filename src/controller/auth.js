@@ -6,6 +6,7 @@ import { sendMail } from '../util/transporter'
 import User from '../model/user'
 import fs from 'fs'
 import path from 'path'
+import xssFilters from 'xss-filters'
 
 export default class {
 
@@ -41,7 +42,7 @@ export default class {
 
       const info = await User.findByIdAndUpdate(_id, { 
         website,
-        nickname,
+        nickname: xssFilters.inHTMLData(nickname),
         ...options
       }, { new: true })
 

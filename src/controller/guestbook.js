@@ -1,5 +1,6 @@
 import { handleSuccess } from '../util/handle'
 import Guestbook from '../model/guestbook'
+import xssFilters from 'xss-filters'
 
 export default class {
   static async message(ctx) {
@@ -8,7 +9,7 @@ export default class {
       const auth = ctx.decodedToken
 
       let res = await Guestbook.create({
-        message,
+        message: xssFilters.inHTMLData(message),
         user: auth._id
       })
 

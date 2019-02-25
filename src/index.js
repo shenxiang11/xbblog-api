@@ -16,13 +16,13 @@ const app = new Koa()
 connect()
 
 app
-  .use(helmet())
   .use(HttpError())
   // .use(bodyParser())
   .use(serve(path.join(__dirname, '../public')))
   .use(koaBody({
     multipart: true
   }))
+  .use(helmet())
   .use(router.routes())
   .use(router.allowedMethods())
 
