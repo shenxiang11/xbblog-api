@@ -6,7 +6,7 @@
   "scripts": {
     "start:redis": "redis-server --daemonize yes",
     "dev": "cross-env NODE_ENV=development nodemon ./src/index.js --exec babel-node",
-    "upload:prodconf": "scp ./src/config/prod.config.js sx@101.132.235.220:/home/sx/xbblog-api/src/config/",
+    "upload:prodconf": "scp ./src/config/prod.config.js root@47.240.12.195:/root/xbblog-api/src/config/",
     "compile": "npx babel src --out-dir dist",
     "prod": "pm2 start ./dist/index.js --name='blog-api'"
   },
