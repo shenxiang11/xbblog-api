@@ -24,7 +24,7 @@
     "koa-helmet": "^4.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "mongoose": "^5.3.9",
+    "mongoose": "^5.7.5",
     "nodemailer": "^4.7.0",
     "qiniu": "^7.2.1",
     "redis": "^2.8.0",
