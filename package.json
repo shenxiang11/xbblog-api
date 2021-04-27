@@ -27,7 +27,7 @@
     "mongoose": "^5.3.9",
     "nodemailer": "^4.7.0",
     "qiniu": "^7.2.1",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.88.0",
     "sha1": "^1.1.1",
     "xss-filters": "^1.2.7"
